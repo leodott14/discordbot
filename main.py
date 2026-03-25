@@ -113,16 +113,16 @@ async def on_member_update(before, after):
 # RAID SYSTEM
 # =========================
 
-@tasks.loop(time=time(hour=17, minute=0, tzinfo=VIENNA_TZ))
+@tasks.loop(time=time(hour=17, minute=30, tzinfo=VIENNA_TZ))
 async def raid_signup():
     for guild in bot.guilds:
-        channel = discord.utils.get(guild.channels, name='raid')
+        channel = discord.utils.get(guild.channels, name='raid-ping')
         role = discord.utils.get(guild.roles, name="Member")
 
         if channel and role:
             try:
                 msg = await channel.send(
-                    f"{role.mention} ⚔️ **Raid starting in 1 hour!**\n\n"
+                    f"{role.mention} ⚔️ **Raid starting in 30 minutes!**\n\n"
                     f"React below if you can join:\n"
                     f"✅ = Available\n"
                     f"❌ = Not available"
