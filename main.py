@@ -113,7 +113,7 @@ async def on_member_update(before, after):
 # RAID SYSTEM
 # =========================
 
-@tasks.loop(time=time(hour=17, minute=30, tzinfo=VIENNA_TZ))
+@tasks.loop(time=time(hour=17, minute=20, tzinfo=VIENNA_TZ))
 async def raid_signup():
     for guild in bot.guilds:
         channel = discord.utils.get(guild.channels, name='raid-ping')
@@ -122,7 +122,7 @@ async def raid_signup():
         if channel and role:
             try:
                 msg = await channel.send(
-                    f"{role.mention} ⚔️ **Raid starting in 30 minutes!**\n\n"
+                    f"{role.mention} ⚔️ **Raid starting in 20 minutes!**\n\n"
                     f"React below if you can join:\n"
                     f"✅ = Available\n"
                     f"❌ = Not available"
@@ -209,7 +209,7 @@ async def register(ctx):
                 except: pass
             return
 
-        msg = await ctx.send(f"{user.mention}, what is your **Level**? (Must be 10 or higher)")
+        msg = await ctx.send(f"{user.mention}, what is your **Level**? (Must be 15 or higher)")
         messages_to_delete.append(msg)
 
         level_msg = await bot.wait_for('message', check=check, timeout=300)
@@ -225,7 +225,7 @@ async def register(ctx):
                 except: pass
             return
 
-        if level < 10:
+        if level < 15:
             err = await ctx.send(f"{user.mention} ❌ Level {level} is below 10, cannot register.")
             messages_to_delete.append(err)
             for m in messages_to_delete: 
